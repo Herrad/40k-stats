@@ -1,0 +1,60 @@
+{
+    "units": {
+        "genestealers": {
+            "stats": {
+                "weaponSkill": 3,
+                "balisticSkill": 4,
+                "strength": 4,
+                "toughness": 4,
+                "wounds": 1,
+                "attacks": 3,
+                "leadership": 9,
+                "movement": 8,
+                "save": 5,
+                "invulnerable": 5,
+            },
+            "weapons": {
+                "default": ["rendingClaws"]
+            },
+            "upgrades": {
+                "weapons": [
+                    {"name": "acidMaw", "limit": 1, "repeatEach": 4, "appliesTo": "one"},
+                    {"name": "fleshHooks", "limit": 1, "repeatEach": 4, "appliesTo": "one"}
+                ],
+                "equipment": [
+                    {"name": "extendedCarapace", "limit": 0, "appliesTo": "all", "removes": ["swiftAndDeadly"]}
+                ]
+            },
+            "specialRules": {
+                "automatic": [
+                    {"name": "flurryOfClaws", "limitFactor": "squadSize", "limitValue": "10"},
+                    {"name": "swiftAndDeadly", "limitFactor": "equipment", "limitValue": "extendedCarapace"}
+                ]
+            }
+        }
+    },
+    "weapons": {
+        "rendingClaws": {
+            "range": 0,
+            "strength": "user",
+            "ap": -1,
+            "damage": 1
+        }
+    },
+    "specialRules": {
+        "statModifiers": {
+            "flurryOfClaws": {
+                "stats": [{"name": "attacks", "value": 4, "static": true}]
+            },
+            "extendedCarapace": {
+                "stats": [{"name": "save", "value": 3, "static": true}]
+            }
+        },
+        "ruleChange": {
+            "swiftAndDeadly": {
+                "phasesModified": ["charge"],
+                "modifiers": [{"allowedAfterAdvance": true}]
+            }
+        }
+    }
+}
